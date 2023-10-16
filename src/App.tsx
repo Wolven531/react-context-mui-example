@@ -1,6 +1,6 @@
 import { Grid, Typography } from '@material-ui/core'
-import React, { FC } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { FC } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { Home } from './Home'
 import { Nav } from './Nav'
@@ -18,14 +18,13 @@ const App: FC = () => {
 					<Grid item xs={2} />
 					<Grid item xs={8}>
 						<BrowserRouter>
-							<Switch>
-								<Route path="/" exact>
-									<Home />
-								</Route>
-								<Route path="/other-page">
-									<OtherPage />
-								</Route>
-							</Switch>
+							<Routes>
+								<Route element={<Home />} path="/" />
+								<Route
+									element={<OtherPage />}
+									path="/other-page"
+								/>
+							</Routes>
 						</BrowserRouter>
 					</Grid>
 					<Grid item xs={2} />
