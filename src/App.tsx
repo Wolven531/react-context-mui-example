@@ -1,15 +1,17 @@
 import { Grid, Typography } from '@material-ui/core'
-import { FC } from 'react'
+import { FC, useContext } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
 import { Home } from './Home'
 import { Nav } from './Nav'
 import { OtherPage } from './OtherPage'
-import { TitleContextProvider } from './TitleContextProvider'
+import { TitleContext } from './TitleContext'
+import './App.css'
 
 const App: FC = () => {
+	const titleContext = useContext(TitleContext)
+
 	return (
-		<TitleContextProvider>
+		<TitleContext.Provider value={titleContext}>
 			<Grid container>
 				<Grid item xs={12}>
 					<Nav />
@@ -33,7 +35,7 @@ const App: FC = () => {
 					<Typography>Footer</Typography>
 				</Grid>
 			</Grid>
-		</TitleContextProvider>
+		</TitleContext.Provider>
 	)
 }
 
