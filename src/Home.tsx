@@ -1,21 +1,19 @@
 import { Container, Link, Typography } from '@material-ui/core'
-import { FC } from 'react'
-import { TitleContextConsumer } from './TitleContextProvider'
+import { FC, useContext, useEffect } from 'react'
+import { TitleContext } from './TitleContext'
 
 const Home: FC = () => {
-	return (
-		<TitleContextConsumer>
-			{(context) => {
-				context.setTitle('Home')
+	const { setTitle } = useContext(TitleContext)
 
-				return (
-					<Container className="app">
-						<Typography>Hello world</Typography>
-						<Link href="/other-page">To other page</Link>
-					</Container>
-				)
-			}}
-		</TitleContextConsumer>
+	useEffect(() => {
+		setTitle('Home')
+	}, [])
+
+	return (
+		<Container className="app">
+			<Typography>Hello world</Typography>
+			<Link href="/other-page">To other page</Link>
+		</Container>
 	)
 }
 
