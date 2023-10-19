@@ -8,8 +8,8 @@ import {
 	Typography,
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
-import { FC, useContext } from 'react'
-import { TitleContext } from './TitleContext'
+import { FC } from 'react'
+import { useTitleContext } from './TitleContext'
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 )
 
-const Nav: FC = () => {
-	const { title } = useContext(TitleContext)
+export const Nav: FC = () => {
+	const { title } = useTitleContext()
 
 	const classes = useStyles()
 
@@ -38,7 +38,7 @@ const Nav: FC = () => {
 				>
 					<MenuIcon />
 				</IconButton>
-				<Typography variant="h6" className={classes.title}>
+				<Typography className={classes.title} variant="h6">
 					{title}
 				</Typography>
 			</Toolbar>
@@ -46,4 +46,4 @@ const Nav: FC = () => {
 	)
 }
 
-export { Nav }
+export default Nav

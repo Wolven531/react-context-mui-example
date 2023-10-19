@@ -1,9 +1,10 @@
 import { Container, Link, Typography } from '@material-ui/core'
-import { FC, useContext, useEffect } from 'react'
-import { TitleContext } from './TitleContext'
+import { FC, useEffect } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
+import { useTitleContext } from './TitleContext'
 
-const Home: FC = () => {
-	const { setTitle } = useContext(TitleContext)
+export const Home: FC = () => {
+	const { setTitle } = useTitleContext()
 
 	useEffect(() => {
 		setTitle('Home')
@@ -12,9 +13,15 @@ const Home: FC = () => {
 	return (
 		<Container className="app">
 			<Typography>Hello world</Typography>
-			<Link href="/other-page">To other page</Link>
+			<Link
+				component={RouterLink}
+				// href="/other-page"
+				to="/other-page"
+			>
+				To other page
+			</Link>
 		</Container>
 	)
 }
 
-export { Home }
+export default Home
