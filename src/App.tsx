@@ -10,7 +10,6 @@ import { Home } from './Home'
 import { Nav } from './Nav'
 import { OtherPage } from './OtherPage'
 import { TitleContextProvider } from './contexts/TitleContext'
-import './App.css'
 
 export const App: FC = () => {
 	return (
