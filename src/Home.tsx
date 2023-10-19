@@ -1,7 +1,7 @@
 import { Container, Link, Typography } from '@material-ui/core'
 import { FC, useEffect } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
-import { useTitleContext } from './TitleContext'
+import { useTitleContext } from './contexts/TitleContext'
 
 export const Home: FC = () => {
 	const { setTitle } = useTitleContext()

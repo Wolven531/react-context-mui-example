@@ -1,15 +1,15 @@
 import { Grid, Typography } from '@material-ui/core'
 import { FC } from 'react'
 import {
+	Route,
 	BrowserRouter as Router,
 	// HashRouter as Router,
-	Route,
 	Routes,
 } from 'react-router-dom'
 import { Home } from './Home'
 import { Nav } from './Nav'
 import { OtherPage } from './OtherPage'
-import { TitleContextProvider } from './TitleContext'
+import { TitleContextProvider } from './contexts/TitleContext'
 import './App.css'
 
 export const App: FC = () => {

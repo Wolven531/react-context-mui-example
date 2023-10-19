@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import { FC } from 'react'
-import { useTitleContext } from './TitleContext'
+import { useTitleContext } from './contexts/TitleContext'
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
