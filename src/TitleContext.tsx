@@ -1,22 +1,39 @@
-import React, { createContext, FC, useContext, useState } from 'react'
+import React, {
+	createContext,
+	FC,
+	ReactNode,
+	useContext,
+	useState,
+} from 'react'
 
-const DefaultTitleContext = {
-	setTitle: (newTitle: string) => {
-		// alert('using default function to set title, WONT WORK')
-		console.info('using default function to set title, WONT WORK')
-	},
-	title: 'Default Title From Creation',
+interface ITitleContext {
+	setTitle: (newTitle: string) => void
+	title: string
 }
 
-export const TitleContext = createContext(DefaultTitleContext)
+const DefaultTitleContext: ITitleContext = {
+	setTitle: (newTitle: string) => {
+		console.info(`using default setTitle(), NO-OP; newTitle="${newTitle}"`)
+	},
+	title: 'Default TitleContext title',
+}
 
-// const TitleContextProvider: FC<any> = (props: any) => {
-// 	const [title, setTitle] = useState('Default Title From useState')
+const TitleContext = createContext(DefaultTitleContext)
 
-// 	return <Provider value={{ setTitle, title }}>{props.children}</Provider>
-// }
+export const TitleContextProvider: FC<{ children: ReactNode }> = (props) => {
+	const [title, setTitle] = useState(DefaultTitleContext.title)
 
-// export { TitleContextProvider, TitleContext.Consumer as TitleContextConsumer }
+	return (
+		<TitleContext.Provider
+			value={{
+				setTitle,
+				title,
+			}}
+		>
+			{props.children}
+		</TitleContext.Provider>
+	)
+}
 
 export const useTitleContext = () => {
 	try {
@@ -25,9 +42,9 @@ export const useTitleContext = () => {
 		if (ctx) {
 			return ctx
 		}
-	} catch (error) {
-		// do nothing when context lookup fails
-	}
 
-	return DefaultTitleContext
+		throw Error('Could not find TitleContext Provider')
+	} catch (error) {
+		return DefaultTitleContext
+	}
 }
