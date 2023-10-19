@@ -6,11 +6,6 @@ import React, {
 	useState,
 } from 'react'
 
-interface ITitleContext {
-	setTitle: (newTitle: string) => void
-	title: string
-}
-
 const DefaultTitleContext: ITitleContext = {
 	setTitle: (newTitle: string) => {
 		console.info(`using default setTitle(), NO-OP; newTitle="${newTitle}"`)
@@ -19,6 +14,11 @@ const DefaultTitleContext: ITitleContext = {
 }
 
 const TitleContext = createContext(DefaultTitleContext)
+
+export interface ITitleContext {
+	setTitle: (newTitle: string) => void
+	title: string
+}
 
 export const TitleContextProvider: FC<{ children: ReactNode }> = (props) => {
 	const [title, setTitle] = useState(DefaultTitleContext.title)
