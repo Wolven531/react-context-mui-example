@@ -1,17 +1,20 @@
 import { Grid, Typography } from '@material-ui/core'
-import { FC, useContext } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { FC } from 'react'
+import {
+	BrowserRouter as Router,
+	// HashRouter as Router,
+	Route,
+	Routes,
+} from 'react-router-dom'
 import { Home } from './Home'
 import { Nav } from './Nav'
 import { OtherPage } from './OtherPage'
-import { TitleContext } from './TitleContext'
+import { TitleContextProvider } from './TitleContext'
 import './App.css'
 
-const App: FC = () => {
-	const titleContext = useContext(TitleContext)
-
+export const App: FC = () => {
 	return (
-		<TitleContext.Provider value={titleContext}>
+		<TitleContextProvider>
 			<Grid container>
 				<Grid item xs={12}>
 					<Nav />
@@ -19,7 +22,7 @@ const App: FC = () => {
 				<Grid item container direction="column" xs={12}>
 					<Grid item xs={2} />
 					<Grid item xs={8}>
-						<BrowserRouter>
+						<Router basename="/">
 							<Routes>
 								<Route element={<Home />} path="/" />
 								<Route
@@ -27,7 +30,7 @@ const App: FC = () => {
 									path="/other-page"
 								/>
 							</Routes>
-						</BrowserRouter>
+						</Router>
 					</Grid>
 					<Grid item xs={2} />
 				</Grid>
@@ -35,8 +38,8 @@ const App: FC = () => {
 					<Typography>Footer</Typography>
 				</Grid>
 			</Grid>
-		</TitleContext.Provider>
+		</TitleContextProvider>
 	)
 }
 
-export { App }
+export default App
