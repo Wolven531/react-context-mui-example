@@ -1,8 +1,9 @@
-import React, {
+import {
 	createContext,
 	FC,
 	ReactNode,
 	useContext,
+	useEffect,
 	useState,
 } from 'react'
 
@@ -20,8 +21,19 @@ export interface ITitleContext {
 	title: string
 }
 
-export const TitleContextProvider: FC<{ children: ReactNode }> = (props) => {
+export const TitleContextProvider: FC<{
+	children: ReactNode
+	keepSynced?: boolean
+}> = ({ children, keepSynced = true }) => {
 	const [title, setTitle] = useState(DefaultTitleContext.title)
+
+	useEffect(() => {
+		if (!keepSynced) {
+			return
+		}
+
+		window.document.title = title
+	}, [keepSynced, title])
 
 	return (
 		<TitleContext.Provider
@@ -30,7 +42,7 @@ export const TitleContextProvider: FC<{ children: ReactNode }> = (props) => {
 				title,
 			}}
 		>
-			{props.children}
+			{children}
 		</TitleContext.Provider>
 	)
 }
